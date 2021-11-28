@@ -24,14 +24,18 @@ import org.apache.http.util.EntityUtils;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 
 public class HttpUtil {
-
-	public static List<Tickets> getAllTickets(){
+	
+	public static List<Tickets> getAllTickets() throws IOException{
 		HttpClient httpClient = new DefaultHttpClient();
 		HttpGet httpGet = new HttpGet("https://zcczendeskcodingchallenge3908.zendesk.com/api/v2/tickets");
+		Properties prop = ReadProperties.readPropertiesFile("application.properties");
+		String username = prop.getProperty("USERNAME");
+		String authtoken = prop.getProperty("TOKEN");
 		httpGet.addHeader(BasicScheme.authenticate(
-		 new UsernamePasswordCredentials("jvijaysaravana@gatech.edu/token", "ggtI8K4r5okepmPzuFXXVF7O84Y0pGNWiroPZLHc"),
+		 new UsernamePasswordCredentials(username, authtoken),
 		 "UTF-8", false));
 		httpGet.addHeader("Content-Type", "application/json");
 
@@ -87,11 +91,14 @@ public class HttpUtil {
 		return ticketList;
 	}
 	
-	public static Tickets getTicketById(String id){
+	public static Tickets getTicketById(String id) throws IOException{
 		HttpClient httpClient = new DefaultHttpClient();
 		HttpGet httpGet = new HttpGet("https://zcczendeskcodingchallenge3908.zendesk.com/api/v2/tickets/" + id + ".json");
+		Properties prop = ReadProperties.readPropertiesFile("application.properties");
+		String username = prop.getProperty("USERNAME");
+		String authtoken = prop.getProperty("TOKEN");
 		httpGet.addHeader(BasicScheme.authenticate(
-		 new UsernamePasswordCredentials("jvijaysaravana@gatech.edu/token", "ggtI8K4r5okepmPzuFXXVF7O84Y0pGNWiroPZLHc"),
+		 new UsernamePasswordCredentials(username, authtoken),
 		 "UTF-8", false));
 		httpGet.addHeader("Content-Type", "application/json");
 
