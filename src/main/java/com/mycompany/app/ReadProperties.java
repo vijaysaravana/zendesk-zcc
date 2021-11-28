@@ -3,6 +3,7 @@ package com.mycompany.app;
 import java.io.*;
 import java.util.*;
 
+//https://www.tutorialspoint.com/how-to-read-the-data-from-a-properties-file-in-java
 public class ReadProperties {
    public static void main(String args[]) throws IOException {
       Properties prop = readPropertiesFile("credentials.properties");
