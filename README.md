@@ -1,6 +1,7 @@
 # zendesk-zcc
 
+Steps : 
+mvn compile
 
-Zendesk 2022 Intern US - Coding Challenge
+mvn exec:java -Dexec.mainClass="com.mycompany.app.App"
 
-CLI based Zendesk Ticket Viewer.
